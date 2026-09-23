@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="theme-color" content="#0b3d4a" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="format-detection" content="telephone=yes" />
+<title>8 Compass Close · Guest Guide · Marina da Gama</title>
+<style>
+  :root {
+    --sea: #0b3d4a;
+    --sea-mid: #15616d;
+    --teal: #1b8a8a;
+    --sand: #f4efe6;
+    --sand-dark: #e6dccb;
+    --foam: #ffffff;
+    --ink: #1c2a2e;
+    --muted: #5b6b70;
+    --accent: #c9842a;
+    --alert: #9b2c2c;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    font-family: "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
+    color: var(--ink);
+    background: var(--sand);
+    line-height: 1.55;
+  }
+  a { color: var(--sea-mid); }
+  header.hero {
+    min-height: 92vh;
+    background:
+      linear-gradient(180deg, rgba(11,61,74,.55) 0%, rgba(11,61,74,.75) 70%, rgba(11,61,74,.92) 100%),
+      url("img/house/dining-sunset.jpg") center/cover no-repeat;
+    color: var(--foam);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 2rem 1.4rem 3rem;
+  }
+  .brand { letter-spacing: .18em; text-transform: uppercase; font-size: .78rem; opacity: .9; }
+  h1 { font-size: clamp(2.1rem, 5vw, 3.6rem); margin: .3rem 0 .4rem; font-weight: 600; }
+  .subtitle { font-size: 1.15rem; max-width: 36rem; opacity: .95; }
+  .hero-actions {
+    display: flex; flex-wrap: wrap; gap: 1rem; align-items: flex-end; margin-top: 1.6rem;
+  }
+  .qr-card {
+    background: #fff; color: var(--ink); border-radius: 14px; padding: .8rem .9rem 1rem;
+    text-align: center; width: 168px; box-shadow: 0 10px 30px rgba(0,0,0,.25);
+  }
+  .qr-card img { width: 140px; height: 140px; display: block; margin: 0 auto .4rem; }
+  .qr-card strong { display: block; font-size: .78rem; }
+  .qr-card span { font-size: .68rem; color: var(--muted); }
+  .btn {
+    display: inline-block; background: var(--accent); color: #fff; text-decoration: none;
+    padding: .75rem 1.15rem; border-radius: 999px; font-family: system-ui, sans-serif;
+    font-size: .9rem; font-weight: 600; border: 0; cursor: pointer;
+  }
+  .btn.ghost { background: transparent; border: 1px solid #fff; }
+  nav {
+    position: sticky; top: 0; z-index: 20;
+    background: var(--sea); color: #fff;
+    display: flex; gap: .2rem; overflow-x: auto;
+    padding: .55rem .8rem;
+    font-family: system-ui, sans-serif; font-size: .82rem;
+  }
+  nav a { color: #e8f4f4; text-decoration: none; padding: .45rem .7rem; border-radius: 999px; white-space: nowrap; }
+  nav a:hover { background: rgba(255,255,255,.12); }
+  main { max-width: 980px; margin: 0 auto; padding: 1.5rem 1.1rem 4rem; }
+  section { background: var(--foam); border-radius: 18px; padding: 1.4rem 1.3rem 1.6rem; margin: 1.1rem 0; box-shadow: 0 1px 0 rgba(0,0,0,.04); }
+  h2 { font-size: 1.55rem; color: var(--sea); margin: 0 0 .8rem; }
+  h3 { color: var(--sea-mid); margin: 1.1rem 0 .35rem; font-size: 1.08rem; }
+  ul { padding-left: 1.15rem; }
+  li { margin: .28rem 0; }
+  .wifi {
+    background: linear-gradient(135deg, #0b3d4a, #1b8a8a);
+    color: #fff;
+    display: grid; grid-template-columns: 1fr auto; gap: 1rem; align-items: center;
+  }
+  .wifi h2, .wifi p { color: #fff; }
+  .wifi-box { font-family: ui-monospace, Menlo, Consolas, monospace; background: rgba(255,255,255,.12); padding: .8rem 1rem; border-radius: 12px; }
+  .wifi img { width: 132px; height: 132px; background: #fff; border-radius: 10px; padding: 6px; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; }
+  .spot { border: 1px solid var(--sand-dark); border-radius: 16px; overflow: hidden; background: #fff; }
+  .spot img.cover { width: 100%; height: 170px; object-fit: cover; display: block; }
+  .spot .body { padding: .85rem 1rem 1rem; }
+  .spot .meta { font-size: .82rem; color: var(--muted); }
+  .spot .qr { width: 88px; height: 88px; float: right; margin: 0 0 .4rem .6rem; background: #fff; }
+  .callout { background: #fff6e8; border-left: 4px solid var(--accent); padding: .7rem .9rem; border-radius: 0 10px 10px 0; }
+  .danger { background: #fdecec; border-left: 4px solid var(--alert); padding: .7rem .9rem; border-radius: 0 10px 10px 0; }
+  footer { text-align: center; color: var(--muted); font-size: .85rem; padding: 1rem; }
+
+  .hero-chip {
+    display:inline-block; font-family:system-ui,sans-serif; font-size:.75rem;
+    letter-spacing:.04em; text-transform:uppercase; border:1px solid rgba(255,255,255,.45);
+    padding:.25rem .6rem; border-radius:999px; margin:.15rem .2rem 0 0;
+  }
+  .filters { display:flex; flex-wrap:wrap; gap:.4rem; margin: .6rem 0 1rem; }
+  .filters button {
+    font-family: system-ui, sans-serif; font-size:.82rem; border:1px solid var(--sand-dark);
+    background:#fff; color:var(--sea); padding:.35rem .75rem; border-radius:999px; cursor:pointer;
+  }
+  .filters button.on { background:var(--sea); color:#fff; border-color:var(--sea); }
+  .gallery { display:grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap:.55rem; }
+  .gallery figure { margin:0; position:relative; cursor:pointer; border-radius:12px; overflow:hidden; background:#ddd; }
+  .gallery img { width:100%; height:140px; object-fit:cover; display:block; transition:transform .3s; }
+  .gallery figure:hover img { transform:scale(1.05); }
+  .gallery figcaption {
+    position:absolute; left:0; right:0; bottom:0; padding:.35rem .5rem;
+    font-family:system-ui,sans-serif; font-size:.68rem; color:#fff;
+    background:linear-gradient(transparent, rgba(0,0,0,.65));
+  }
+  .lb { position:fixed; inset:0; background:rgba(8,20,24,.92); display:none; z-index:50;
+        align-items:center; justify-content:center; padding:1.2rem; }
+  .lb.show { display:flex; }
+  .lb img { max-width:min(1100px,96vw); max-height:82vh; border-radius:8px; }
+  .lb .cap { position:absolute; bottom:1.1rem; left:0; right:0; text-align:center; color:#fff;
+             font-family:system-ui,sans-serif; }
+  .lb .x, .lb .navbtn {
+    position:absolute; background:rgba(255,255,255,.12); color:#fff; border:0; cursor:pointer;
+    font-size:1.6rem; width:44px; height:44px; border-radius:50%;
+  }
+  .lb .x { top:16px; right:16px; }
+  .lb .prev { left:12px; top:50%; transform:translateY(-50%); }
+  .lb .next { right:12px; top:50%; transform:translateY(-50%); }
+  .copy { margin-top:.55rem; background:#fff; color:var(--sea); }
+  .around-card img { width:100%; height:150px; object-fit:cover; border-radius:12px; display:block; margin-bottom:.55rem; }
+  .spot { margin-bottom:1rem; }
+
+
+  .tap {
+    display:inline-flex; align-items:center; justify-content:center; gap:.4rem;
+    min-height:44px; padding:.55rem 1rem; border-radius:999px;
+    font-family:system-ui,sans-serif; font-size:.86rem; font-weight:600;
+    text-decoration:none; border:0; cursor:pointer;
+  }
+  .tap.gold { background:var(--accent); color:#fff; }
+  .tap.sea { background:var(--sea); color:#fff; }
+  .tap.light { background:#fff; color:var(--sea); }
+  .tap.outline { background:transparent; color:#fff; border:1px solid rgba(255,255,255,.7); }
+  .tap-row { display:flex; flex-wrap:wrap; gap:.5rem; margin-top:.7rem; }
+  a.qr-card { text-decoration:none; color:inherit; }
+  a.qr-card:active { transform:scale(.98); }
+  .spot .qr { float:none; display:block; margin:0 0 .6rem auto; }
+  .spot .body { display:grid; grid-template-columns: 1fr 88px; gap:.6rem 1rem; align-items:start; }
+  .spot .body .span { grid-column: 1 / -1; }
+  .spot .qrwrap { grid-column: 2; grid-row: 1 / span 3; text-align:center; }
+  .spot .qrwrap img { width:88px; height:88px; }
+  .spot .qrwrap .tiny { display:block; font-size:.65rem; color:var(--muted); font-family:system-ui,sans-serif; margin-top:.2rem; }
+  #topbtn {
+    position:fixed; right:16px; bottom:max(16px, env(safe-area-inset-bottom));
+    z-index:40; width:48px; height:48px; border-radius:50%; border:0;
+    background:var(--sea); color:#fff; font-size:1.25rem; cursor:pointer;
+    box-shadow:0 8px 20px rgba(11,61,74,.35); display:none;
+  }
+  #topbtn.show { display:block; }
+  nav { -webkit-overflow-scrolling:touch; padding-left: max(.8rem, env(safe-area-inset-left)); }
+  @media (max-width: 720px) {
+    header.hero { min-height: auto; padding: 4.2rem 1rem 1.6rem; }
+    .hero-actions { flex-direction: column; align-items: stretch; }
+    .qr-card { width: 100%; display:flex; align-items:center; gap:.8rem; text-align:left; }
+    .qr-card img { width:72px; height:72px; margin:0; }
+    .wifi { grid-template-columns: 1fr; }
+    .wifi img { width:110px; height:110px; }
+    .gallery { grid-template-columns: repeat(2, 1fr); }
+    .gallery img { height:120px; }
+    .spot .body { grid-template-columns: 1fr; }
+    .spot .qrwrap { grid-column:1; grid-row:auto; display:flex; align-items:center; gap:.6rem; }
+    .lb .navbtn { width:48px; height:48px; }
+    .lb .prev { left:6px; }
+    .lb .next { right:6px; }
+    h1 { font-size:2.1rem; }
+  }
+
+  .lang { position:absolute; top:12px; right:12px; display:flex; gap:.3rem; z-index:5; }
+  header.hero { position:relative; }
+  .lang button {
+    font-family:system-ui,sans-serif; font-size:.75rem; font-weight:700;
+    border:1px solid rgba(255,255,255,.5); background:rgba(0,0,0,.25); color:#fff;
+    border-radius:999px; padding:.3rem .55rem; min-height:36px; cursor:pointer;
+  }
+  .lang button.on { background:#fff; color:var(--sea); }
+  .note { font-size:.92rem; }
+  .help-grid { display:grid; gap:.7rem; }
+  .help-item { border:1px solid var(--sand-dark); border-radius:12px; padding:.75rem .9rem; }
+  .help-item strong { display:block; color:var(--sea); margin-bottom:.2rem; }
+  .shop a { display:block; padding:.45rem 0; border-bottom:1px solid var(--sand-dark); text-decoration:none; color:var(--ink); }
+  .shop a:last-child { border-bottom:0; }
+  .shop small { display:block; color:var(--muted); font-family:system-ui,sans-serif; font-size:.78rem; }
+  #dock {
+    display:none; position:fixed; left:0; right:0; bottom:0; z-index:35;
+    background:rgba(11,61,74,.96); padding:.45rem .6rem max(.45rem, env(safe-area-inset-bottom));
+    gap:.4rem; justify-content:center;
+  }
+  #install { display:none; }
+  @media (max-width:720px) {
+    #dock { display:flex; }
+    main { padding-bottom:5.2rem; }
+    #topbtn { bottom: calc(64px + env(safe-area-inset-bottom)); }
+  }
+  @media print { #dock, .lang, #install { display:none !important; } }
+
+  @media print {
+    #topbtn, .tap-row, nav { display:none !important; }
+  }
+
+  @media print {
+    nav, .hero-actions .btn, .no-print { display: none !important; }
+    header.hero { min-height: 42vh; }
+    section { break-inside: avoid; box-shadow: none; }
+  }
+</style>
+</head>
+<body>
+<header class="hero">
+  <div class="lang" role="navigation" aria-label="Language">
+    <button type="button" data-lang="en" class="on">EN</button>
+    <button type="button" data-lang="de">DE</button>
+    <button type="button" data-lang="fr">FR</button>
+  </div>
+  <div class="brand" data-i="brand">Airbnb guest guide · East Lake Island</div>
+  <h1>8 Compass Close</h1>
+  <p class="subtitle" data-i="sub">Dinner faces the canal. The mountain does the rest.</p>
+  <div>
+    <span class="hero-chip">3 bedrooms</span>
+    <span class="hero-chip">Pool on the canal</span>
+    <span class="hero-chip">Garage + driveway</span>
+    <span class="hero-chip">Max 6 guests</span>
+    <span class="hero-chip" data-i="tonight">Spring evenings: sliders shut if the south-easter is up. Fireplace if you want it.</span>
+  </div>
+  <div class="hero-actions">
+    <a class="qr-card" href="#wifi">
+      <img src="qr/wifi.png" alt="Wi-Fi QR" />
+      <div><strong>Join Wi‑Fi</strong><span>Tap, or scan the code</span></div>
+    </a>
+    <a class="qr-card" href="https://maps.google.com/?q=8+Compass+Close,+Marina+da+Gama,+Cape+Town" target="_blank" rel="noopener">
+      <img src="qr/maps.png" alt="Google Maps QR" />
+      <div><strong>Open in Maps</strong><span>8 Compass Close</span></div>
+    </a>
+    <div class="tap-row">
+      <button class="tap gold" type="button" onclick="window.print()" data-i="print">Print / Save PDF</button>
+      <a class="tap outline" href="#explore" data-i="todo">Things to do</a>
+    </div>
+    <p class="note no-print" style="margin-top:1rem;max-width:36rem;opacity:.95;" data-i="offline">Open this page once on Wi‑Fi (airport or the house). It stays on your phone even if signal drops — File → Add to Home Screen, or the button below.</p>
+    <div class="tap-row no-print" id="install">
+      <button class="tap light" type="button" id="installBtn" data-i="homescreen">How to add to Home Screen</button>
+    </div>
+  </div>
+</header>
+
+<nav>
+  <a href="#help" data-i="nhelp">Help</a>
+  <a href="#wifi">Wi‑Fi</a>
+  <a href="#plan" data-i="nplan">Today</a>
+  <a href="#eat" data-i="neat">Eat</a>
+  <a href="#house" data-i="nhouse">House</a>
+  <a href="#rules" data-i="nrules">Rules</a>
+  <a href="#explore" data-i="nexplore">Do</a>
+  <a href="#contact" data-i="ncontact">Contact</a>
+</nav>
+
+<main>
+
+<section id="help">
+  <h2 data-i="help_h">If something goes wrong</h2>
+  <p class="note" data-i="help_p">Read this first. Then message us on Airbnb if it is not an emergency.</p>
+  <div class="help-grid">
+    <div class="help-item"><strong data-i="h1t">Cannot open the door</strong><span data-i="h1b">Use the smart-lock code in your Airbnb message. Do not share it. If it fails: try the code again slowly, check the lock battery light, then call us. Do not force the handle.</span></div>
+    <div class="help-item"><strong data-i="h2t">No hot water</strong><span data-i="h2b">The geyser can take 30–40 minutes after heavy use. If it stays cold after an hour, message us — do not open the geyser cupboard or touch electrics.</span></div>
+    <div class="help-item"><strong data-i="h3t">Wi‑Fi dead</strong><span data-i="h3b">Reboot the router (unplug 20 seconds). Network 8OnCompass / 8ightOnCompass. Still down? Use phone data and tell us. No torrents.</span></div>
+    <div class="help-item"><strong data-i="h4t">Gate or boom will not open</strong><span data-i="h4b">Stop at the East Lake Island vehicle gate. Tell security you are Airbnb guests at 8 Compass Close. Keep the booking on your phone. Pedestrian footbridge is the backup.</span></div>
+    <div class="help-item"><strong data-i="h5t">Child / water emergency</strong><span data-i="h5b">Get them out. Call 10177 or ER24 084 124. Then call us. The pool is unfenced on a canal deck — never turn your back.</span></div>
+    <div class="help-item"><strong data-i="h6t">Power trip / something broken</strong><span data-i="h6b">Leave electrics alone. Photograph the issue and message Airbnb. For fire or crime: 10111.</span></div>
+  </div>
+  <div class="tap-row no-print">
+    <a class="tap sea" href="tel:+27722203385">Maricken 072 220 3385</a>
+    <a class="tap sea" href="tel:+27829297582">Nic 082 929 7582</a>
+    <a class="tap gold" href="tel:10177">Ambulance 10177</a>
+  </div>
+</section>
+
+<section class="wifi" id="wifi">
+  <div>
+    <h2>Wi‑Fi</h2>
+    <p>Uncapped fibre for streaming, maps and light work. Please no illegal downloads or heavy torrenting.</p>
+    <div class="wifi-box">
+      Network: <strong>8OnCompass</strong><br/>
+      Password: <strong>8ightOnCompass</strong>
+    </div>
+    <div class="tap-row">
+      <button class="tap light" type="button" onclick="copyWifi()">Copy password</button>
+      <button class="tap gold" type="button" onclick="copyWifi(true)">Copy network + password</button>
+    </div>
+    <span id="copied" style="font-size:.85rem;"></span>
+    <p style="font-size:.85rem;margin:.7rem 0 0;opacity:.9;">Scan the QR with your phone camera to join automatically (iPhone &amp; Android).</p>
+  </div>
+  <img src="qr/wifi.png" alt="Wi-Fi QR code" />
+</section>
+
+
+
+<section id="weather">
+  <h2 data-i="w_h">Weather &amp; wind</h2>
+  <p data-i="w_p">False Bay is often cooler than the city, and the summer south-easter can hammer the deck and the canal. Check wind before you take any craft out. Winter evenings: use the fireplace, close the sliders. Swimsuits plus a jersey is normal here.</p>
+  <p class="callout" data-i="geese">If Egyptian geese start at 05:30, that is the neighbourhood alarm clock. Normal.</p>
+  <div class="tap-row no-print">
+    <a class="tap sea" href="https://www.windy.com/-34.089/18.469" target="_blank" rel="noopener">Windy.com</a>
+    <a class="tap gold" href="https://www.yr.no/en/forecast/daily-table/2-3363771/South%20Africa/Western%20Cape/City%20of%20Cape%20Town/Muizenberg" target="_blank" rel="noopener">Yr forecast</a>
+  </div>
+</section>
+
+<section id="plan">
+  <h2 data-i="p_h">A simple day</h2>
+  <ul>
+    <li data-i="p1"><strong>Morning:</strong> Muizenberg Beach or a walk on Park Island / Zandvlei — 5–10 minutes.</li>
+    <li data-i="p2"><strong>Afternoon:</strong> penguins at Boulders, or a tasting in Constantia. One outing, not both.</li>
+    <li data-i="p3"><strong>Sunset:</strong> stay home. The dining table faces the water and the mountain. That is the point of this house.</li>
+  </ul>
+</section>
+
+<section id="eat">
+  <h2 data-i="e_h">Eat &amp; shop nearby</h2>
+  <p class="note" data-i="e_p">All within about 10 minutes by car unless marked. Tap for Maps.</p>
+  <div class="shop">
+    <a href="https://maps.google.com/?q=Eastlake+Centre+Pick+n+Pay+Marina+da+Gama" target="_blank" rel="noopener">Pick n Pay Eastlake Centre<small>Groceries · closest supermarket</small></a>
+    <a href="https://maps.google.com/?q=Muizenberg+Beach+cafes" target="_blank" rel="noopener">Muizenberg village cafés<small>Breakfast / coffee after a swim</small></a>
+    <a href="https://maps.google.com/?q=Olympia+Cafe+Kalk+Bay" target="_blank" rel="noopener">Olympia Café, Kalk Bay<small>Simple dinner · book if you can</small></a>
+    <a href="https://maps.google.com/?q=Clicks+Muizenberg" target="_blank" rel="noopener">Clicks Muizenberg<small>Pharmacy &amp; basics</small></a>
+    <a href="https://maps.google.com/?q=Engen+Muizenberg+Main+Road" target="_blank" rel="noopener">Fuel — Main Road Muizenberg<small>Fill up before the peninsula</small></a>
+    <a href="https://maps.google.com/?q=Blue+Route+Mall+Tokai" target="_blank" rel="noopener">Blue Route Mall, Tokai<small>± 12 min · bigger shop</small></a>
+  </div>
+</section>
+
+<section id="hazards">
+  <h2 data-i="z_h">Watch these in the house</h2>
+  <ul>
+    <li data-i="z1">Unfenced pool on a wooden deck next to the canal. Children need eyes on them every second.</li>
+    <li data-i="z2">Canal edge and jetty — no rail that stops a fall. Gates closed.</li>
+    <li data-i="z3">Marble stairs can be slick with wet feet.</li>
+    <li data-i="z4">Trampoline: own risk, no shoes.</li>
+    <li data-i="z5">Braai / Big Green Egg and fireplace stay hot. Never leave a fire.</li>
+    <li data-i="z6">No glass at the pool. No diving.</li>
+  </ul>
+</section>
+
+<section id="vlei">
+  <h2 data-i="vlei_h">Look after the vlei</h2>
+  <p data-i="vlei_p">This canal feeds Zandvlei. No bread for the birds. No soap, sand or coals in the water. Keep voices down at dawn — that is when the herons hunt.</p>
+</section>
+
+<section id="vlei">
+  <h2 data-i="vlei_h">Look after the vlei</h2>
+  <p data-i="vlei_p">This canal feeds Zandvlei. No bread for the birds. No soap, sand or coals in the water. Keep voices down at dawn — that is when the herons hunt.</p>
+</section>
+
+<section id="house">
+  <h2>The house</h2>
+  <p>Open-plan living onto the canal, a fireplace for winter evenings, a full kitchen and laundry, three bedrooms, and a private pool and deck on the water. Tap a photo to enlarge. Use the buttons to filter rooms.</p>
+  <div class="filters" id="filters">
+    <button class="on" data-f="all" type="button">All</button>
+    <button data-f="living" type="button">Living &amp; dining</button>
+    <button data-f="kitchen" type="button">Kitchen</button>
+    <button data-f="bed" type="button">Bedrooms</button>
+    <button data-f="bath" type="button">Bathrooms</button>
+    <button data-f="out" type="button">Pool &amp; courtyard</button>
+  </div>
+  <div class="gallery" id="gallery">
+    <figure data-f="living" data-cap="Dining at sunset over the canal"><img src="img/house/dining-sunset.jpg" alt="Dining room at sunset"></figure>
+    <figure data-f="living" data-cap="Dining room looking onto the water"><img src="img/house/dining-canal.jpg" alt="Dining canal view"></figure>
+    <figure data-f="living" data-cap="Open-plan living, dining and kitchen"><img src="img/house/open-plan.jpg" alt="Open plan living"></figure>
+    <figure data-f="living" data-cap="Living room toward the courtyard"><img src="img/house/living-courtyard.jpg" alt="Living room"></figure>
+    <figure data-f="living" data-cap="Fireplace with a view of the canal"><img src="img/house/fireplace-canal.jpg" alt="Fireplace"></figure>
+    <figure data-f="living" data-cap="Lounge, stairs and dining"><img src="img/house/living-stairs.jpg" alt="Living and stairs"></figure>
+    <figure class="extra" hidden data-f="living" data-cap="TV lounge opening to the courtyard"><img src="img/house/tv-lounge-courtyard.jpg" alt="TV lounge"></figure>
+    <figure class="extra" hidden data-f="kitchen" data-cap="Kitchen looking through to the laundry"><img src="img/house/kitchen.jpg" alt="Kitchen"></figure>
+    <figure class="extra" hidden data-f="kitchen" data-cap="Hob with a marina view"><img src="img/house/hob-view.jpg" alt="Kitchen hob"></figure>
+    <figure class="extra" hidden data-f="kitchen" data-cap="Kitchen run toward the dining table"><img src="img/house/kitchen-run.jpg" alt="Kitchen run"></figure>
+    <figure class="extra" hidden data-f="kitchen" data-cap="Island and breakfast bar"><img src="img/house/island.jpg" alt="Kitchen island"></figure>
+    <figure class="extra" hidden data-f="kitchen" data-cap="Laundry — washer, dryer and dishwasher"><img src="img/house/laundry.jpg" alt="Laundry"></figure>
+    <figure class="extra" hidden data-f="bed" data-cap="Bedroom with en-suite"><img src="img/house/bedroom-ensuite.jpg" alt="Bedroom ensuite"></figure>
+    <figure class="extra" hidden data-f="bed" data-cap="Bedroom with shutters onto the garden"><img src="img/house/bedroom-shutters.jpg" alt="Bedroom shutters"></figure>
+    <figure class="extra" hidden data-f="bed" data-cap="Bedroom opening to the canal"><img src="img/house/bedroom-canal.jpg" alt="Canal bedroom"></figure>
+    <figure class="extra" hidden data-f="bed" data-cap="Third bedroom"><img src="img/house/bedroom-mint.jpg" alt="Third bedroom"></figure>
+    <figure class="extra" hidden data-f="bed" data-cap="Window seat and mountain view"><img src="img/house/bedroom-seat.jpg" alt="Window seat"></figure>
+    <figure class="extra" hidden data-f="bed" data-cap="Walk-in wardrobe"><img src="img/house/wardrobe.jpg" alt="Wardrobe"></figure>
+    <figure class="extra" hidden data-f="bath" data-cap="Main bathroom — bath and rain shower"><img src="img/house/main-bath.jpg" alt="Main bathroom"></figure>
+    <figure class="extra" hidden data-f="bath" data-cap="En-suite"><img src="img/house/ensuite.jpg" alt="Ensuite"></figure>
+    <figure class="extra" hidden data-f="bath" data-cap="Shower room"><img src="img/house/shower.jpg" alt="Shower"></figure>
+    <figure class="extra" hidden data-f="bath" data-cap="Guest cloakroom"><img src="img/house/guest-loo.jpg" alt="Guest loo"></figure>
+    <figure class="extra" hidden data-f="out" data-cap="Pool and deck on the canal"><img src="img/house/pool-deck.jpg" alt="Pool deck"></figure>
+    <figure class="extra" hidden data-f="out" data-cap="The house from the water"><img src="img/house/pool-aerial.jpg" alt="Pool aerial"></figure>
+    <figure class="extra" hidden data-f="out" data-cap="Courtyard, seating and trampoline"><img src="img/house/courtyard.jpg" alt="Courtyard"></figure>
+    <figure class="extra" hidden data-f="out" data-cap="Built-in braai and outdoor table"><img src="img/house/braai.jpg" alt="Braai"></figure>
+  </div>
+  <div class="tap-row no-print">
+    <button class="tap sea" type="button" id="morePhotos" data-i="more">See all photos</button>
+  </div>
+  <p class="callout" style="margin-top:1rem;">The trampoline and any water craft are used entirely at your own risk. Supervise children. Leave the Big Green Egg / braai clean after use.</p>
+</section>
+
+<section id="rules">
+  <h2>House rules</h2>
+  <p>By booking and staying at 8 Compass Close you agree to these rules. They keep the home comfortable for you, for neighbours on East Lake Island, and for the next guests.</p>
+
+  <h3>1. Check-in and check-out</h3>
+  <ul>
+    <li><strong>Check-in:</strong> 15:00 or later. Early check-in may be possible if the home is ready — please ask at least 24 hours ahead (a small fee may apply).</li>
+    <li><strong>Check-out:</strong> 10:00 sharp. Late check-out may be charged.</li>
+    <li><strong>Self check-in:</strong> Use the smart-lock code in your Airbnb welcome message. Do not share it outside your booked party.</li>
+    <li>On departure: lock all doors and windows, switch off lights and appliances, and return keys to the lockbox as instructed.</li>
+    <li><strong>The home:</strong> 3 bedrooms, a swimming pool, a single garage and driveway parking.</li>
+    <li><strong>Guest limit:</strong> Only the guests on your booking. Maximum occupancy is 6. Extra visitors need prior approval and may attract a fee.</li>
+  </ul>
+
+  <h3>2. Smoking and substances</h3>
+  <ul>
+    <li>No smoking of any kind inside (cigarettes, cigars, vapes). Outside only, at least 4 metres from doors and windows. Use the ashtray — do not litter.</li>
+    <li>No illegal substances on the property. Breach means immediate eviction without refund and may be reported.</li>
+  </ul>
+
+  <h3>3. Parties, events and noise</h3>
+  <ul>
+    <li>No parties, events or gatherings beyond the booked guests. No DJs, speakers on the lawn, or amplified setups.</li>
+    <li><strong>Quiet hours:</strong> 22:00 – 07:00 every day. East Lake Island is a quiet residential marina. Keep voices, TV and music down at all times.</li>
+    <li>Noise complaints can lead to fines or eviction.</li>
+  </ul>
+
+  <h3>4. Pets</h3>
+  <ul>
+    <li>No pets, including visiting animals. Service animals only with written pre-approval and documentation.</li>
+    <li>Fur, damage or evidence of an animal will attract a deep-cleaning fee.</li>
+  </ul>
+
+  <h3>5. Cleanliness and care</h3>
+  <ul>
+    <li>Treat the home as you would your own. Wash and put away dishes. Do not leave food out (it attracts pests and gulls).</li>
+    <li><strong>Refuse:</strong> general waste collection on <strong>Mondays</strong>. <strong>Recycling:</strong> Wednesdays. Use the correct bins.</li>
+    <li>A standard clean is included. Extra mess, stains or overflow bins may be billed.</li>
+    <li>Report breakages immediately via Airbnb. Do not rearrange furniture or stick anything to the walls.</li>
+  </ul>
+
+  <h3>6. Amenities</h3>
+  <ul>
+    <li>Kitchen, laundry, garden and pool are yours to enjoy — clean as you go; do not overload the washing machine.</li>
+    <li><strong>Parking:</strong> one car in the single garage and additional cars on the driveway only. Do not block the cul-de-sac or neighbours. Street parking is at your own risk.</li>
+    <li><strong>Pool:</strong> unsupervised swimming is at your own risk. The pool sits on the wooden canal deck and is not a certified child barrier. No glass in or around the pool. No diving. Children must be watched at all times. Do not add chemicals or empty the pool.</li>
+    <li><strong>Braai / fireplace:</strong> use the outdoor braai and indoor fireplace with care. Never leave a fire unattended. Douse coals fully. Do not burn rubbish.</li>
+    <li><strong>Trampoline:</strong> own risk; one child at a time if possible; no shoes or somersaults onto hard surfaces.</li>
+    <li>Keep gates closed. The marina waterways are not childproofed.</li>
+    <li>Cape Town water is precious — short showers, please. Switch off lights, heating and air-con when you go out.</li>
+  </ul>
+
+  <h3>7. Safety and neighbours</h3>
+  <ul>
+    <li>Emergencies: <strong>10111</strong> (SAPS) or <strong>10177</strong> (ambulance). Fire extinguisher and first-aid kit are marked in the house.</li>
+    <li>East Lake Island has controlled vehicle access and 24-hour security. Still lock up when you leave. Do not invite strangers onto the property.</li>
+    <li>Supervise children near the pool, canals, stairs and any balcony. The home is not childproofed.</li>
+    <li>No commercial photoshoots or filming without approval.</li>
+  </ul>
+
+  <div class="danger">
+    Serious breaches (parties, damage, illegal activity, undeclared extra guests) can mean immediate eviction, loss of the security deposit, and a report to Airbnb.
+  </div>
+</section>
+
+<section id="arrive">
+  <h2>Finding 8 Compass Close</h2>
+  <p>East Lake Island, Marina da Gama, Muizenberg, Cape Town, 7945. The island has a single vehicle entrance with security, plus a pedestrian footbridge.</p>
+  <ul>
+    <li>From the city / airport: M5 south toward Muizenberg, then into Marina da Gama and East Lake Island.</li>
+    <li>Nearest shops: Eastlake Centre (Pick n Pay / everyday needs) a few minutes by car.</li>
+    <li>Muizenberg Beach &amp; Surfers’ Corner: about 5–8 minutes’ drive.</li>
+    <li>Tap <strong>Open in Maps</strong> on the cover, or search “8 Compass Close, Marina da Gama”.</li>
+  </ul>
+  <div class="tap-row no-print">
+    <a class="tap sea" href="https://maps.google.com/?q=8+Compass+Close,+Marina+da+Gama,+Cape+Town" target="_blank" rel="noopener">Open in Google Maps</a>
+    <a class="tap gold" href="https://maps.apple.com/?q=8+Compass+Close,+Marina+da+Gama" target="_blank" rel="noopener">Open in Apple Maps</a>
+  </div>
+  <div class="callout">Please drive slowly on the island. Children, cyclists and waterbirds share the roads.</div>
+</section>
+
+<section id="around">
+  <h2>On your doorstep</h2>
+  <div class="grid">
+    <div class="around-card">
+      <img src="img/house/pool-deck.jpg" alt="Pool on the canal deck" />
+      <h3>The pool &amp; deck</h3>
+      <p>The pool is for booked guests only. Rinse off sunscreen before a swim if you can, leave furniture where you found it, and never leave children unattended — not even “just for a minute.”</p>
+    </div>
+    <div class="around-card">
+      <img src="img/house/dining-canal.jpg" alt="Canal from the dining room" />
+      <h3>The waterways</h3>
+      <p>Marina da Gama sits on canals linked to Zandvlei. Kayaks, SUPs and pedalos are how locals get around at sunset. If a craft is provided with the house, use it at your own risk, wear a life jacket, and stay off the main estuary mouth in wind or after rain.</p>
+    </div>
+    <div>
+      <h3>Birds &amp; otters</h3>
+      <p>Herons, flamingos (seasonal), kingfishers, cormorants and the odd Cape clawless otter use the vlei. Please don’t feed wildlife, and keep noise down at dawn and dusk.</p>
+    </div>
+    <div class="around-card">
+      <img src="img/house/courtyard.jpg" alt="Courtyard seating" />
+      <h3>Courtyard &amp; walks</h3>
+      <p>Eat outside at the braai table. Park Island (no cars) and the Zandvlei paths are the easiest family walks. Muizenberg mountain trails start a short drive away.</p>
+    </div>
+  </div>
+</section>
+
+<section id="explore">
+  <h2>Things to do nearby</h2>
+  <p>Scan any QR for official pages, hours and tickets. Fees change — check before you go.</p>
+
+  <article class="spot">
+    <img class="cover" src="img/zandvlei.jpg" alt="Flamingos on a Cape wetland" />
+    <div class="body">
+      <div class="qrwrap"><a href="https://zandvleitrust.org.za/the-zandvlei/" target="_blank" rel="noopener"><img class="qr" src="qr/zandvlei.png" alt="QR Zandvlei Trust"></a><a class="tiny" href="https://zandvleitrust.org.za/the-zandvlei/" target="_blank" rel="noopener">Open Zandvlei site</a></div>
+      <h3>Zandvlei Estuary Nature Reserve</h3>
+      <p class="meta">Next door · free entry · bird hides, walks, kayaking with permit</p>
+      <p>A 300‑hectare wetland on your doorstep — part of False Bay Ecology Park. More than 150 bird species, rare fynbos and a working estuary that cleans water and buffers floods. Picnic, walk the Muizenberg circular paths, or watch flamingos when water levels allow.</p>
+      <p><strong>Address:</strong> Park Island / Coniston area, Marina da Gama<br/>
+      <strong>Web:</strong> <a href="https://zandvleitrust.org.za/the-zandvlei/">zandvleitrust.org.za</a> · City reserve enquiries 021 444 1489</p>
+    </div>
+  </article>
+
+  <article class="spot">
+    <img class="cover" src="img/muizenberg.jpg" alt="Colourful Muizenberg beach huts" />
+    <div class="body">
+      <div class="qrwrap"><a href="https://maps.google.com/?q=Muizenberg+Beach+Surfers+Corner" target="_blank" rel="noopener"><img class="qr" src="qr/muizenberg.png" alt="QR Muizenberg"></a><a class="tiny" href="https://maps.google.com/?q=Muizenberg+Beach+Surfers+Corner" target="_blank" rel="noopener">Open Muizenberg map</a></div>
+      <h3>Muizenberg Beach &amp; Surfers’ Corner</h3>
+      <p class="meta">± 5–8 min drive · Blue Flag beach · beginner surf</p>
+      <p>False Bay’s friendliest beach: warmer water than the Atlantic side, gentle summer waves, and the famous rainbow Victorian changing huts. Surf schools at Surfers’ Corner hire boards and wetsuits. Pavilion pool, slides and cafés when you want a break from sand. Watch for bluebottles in season; lifeguards patrol in peak months.</p>
+      <p><strong>Address:</strong> Beach Road, Muizenberg · Pavilion 021 788 1929</p>
+    </div>
+  </article>
+
+  <article class="spot">
+    <img class="cover" src="img/kalkbay.jpg" alt="Fishing boats in Kalk Bay harbour" />
+    <div class="body">
+      <div class="qrwrap"><a href="https://www.capetown.travel/neighbourhood/kalk-bay/" target="_blank" rel="noopener"><img class="qr" src="qr/kalkbay.png" alt="QR Kalk Bay"></a><a class="tiny" href="https://www.capetown.travel/neighbourhood/kalk-bay/" target="_blank" rel="noopener">Open Kalk Bay guide</a></div>
+      <h3>Kalk Bay village &amp; harbour</h3>
+      <p class="meta">± 10–15 min drive · seafood, seals, galleries</p>
+      <p>A working harbour where the boats still come in with fish and calamari. Watch Cape fur seals in the water, browse Main Road’s bookshops and ceramic studios, then eat with a mountain-and-bay view. The coastal Metrorail stop makes it an easy car-free outing if the trains are running.</p>
+      <p><strong>Web:</strong> <a href="https://www.capetown.travel/neighbourhood/kalk-bay/">capetown.travel/kalk-bay</a></p>
+    </div>
+  </article>
+
+  <article class="spot">
+    <img class="cover" src="img/penguins.jpg" alt="African penguins at Boulders Beach" />
+    <div class="body">
+      <div class="qrwrap"><a href="https://www.sanparks.org/parks/table-mountain" target="_blank" rel="noopener"><img class="qr" src="qr/boulders.png" alt="QR Boulders Beach"></a><a class="tiny" href="https://www.sanparks.org/parks/table-mountain" target="_blank" rel="noopener">Open SANParks</a></div>
+      <h3>Boulders Beach penguin colony</h3>
+      <p class="meta">± 20–30 min drive · SANParks conservation fee</p>
+      <p>A sheltered granite cove in Simon’s Town with a wild colony of endangered African penguins. Stay on the boardwalks, do not touch or feed them (beaks are sharp), and swim only where signed. Combine with a stroll through Simon’s Town and a cone from a harbour café.</p>
+      <p><strong>Address:</strong> Kleintuin Road, Simon’s Town · 021 786 2329<br/>
+      <strong>Web:</strong> <a href="https://www.sanparks.org/parks/table-mountain">sanparks.org</a></p>
+    </div>
+  </article>
+
+  <article class="spot">
+    <img class="cover" src="img/capepoint.jpg" alt="Cape Point lighthouse on the cliffs" />
+    <div class="body">
+      <div class="qrwrap"><a href="https://capepoint.co.za" target="_blank" rel="noopener"><img class="qr" src="qr/capepoint.png" alt="QR Cape Point"></a><a class="tiny" href="https://capepoint.co.za" target="_blank" rel="noopener">Open Cape Point</a></div>
+      <h3>Cape Point &amp; Cape of Good Hope</h3>
+      <p class="meta">± 35–50 min drive · Table Mountain National Park</p>
+      <p>Rugged cliffs, fynbos, baboons, ostrich and the Flying Dutchman funicular up to the lighthouse. This is not where the oceans “meet” on a map, but the views feel like the end of Africa. Keep food locked away from baboons. Conservation fees apply; hours are shorter in winter.</p>
+      <p><strong>Web:</strong> <a href="https://capepoint.co.za">capepoint.co.za</a> · Gate 021 780 9526</p>
+    </div>
+  </article>
+
+  <article class="spot">
+    <img class="cover" src="img/kirstenbosch.jpg" alt="Boomslang canopy walkway at Kirstenbosch" />
+    <div class="body">
+      <div class="qrwrap"><a href="https://www.sanbi.org/gardens/kirstenbosch/" target="_blank" rel="noopener"><img class="qr" src="qr/kirstenbosch.png" alt="QR Kirstenbosch"></a><a class="tiny" href="https://www.sanbi.org/gardens/kirstenbosch/" target="_blank" rel="noopener">Open Kirstenbosch</a></div>
+      <h3>Kirstenbosch National Botanical Garden</h3>
+      <p class="meta">± 20–25 min drive · UNESCO Cape Floral Region</p>
+      <p>South Africa’s showcase garden on the eastern slopes of Table Mountain: proteas, cycads, the Boomslang canopy walkway, picnic lawns and summer sunset concerts. Spring wildflowers are the peak. Wheelchair-friendly routes and good on-site cafés.</p>
+      <p><strong>Address:</strong> Rhodes Drive, Newlands · 021 799 8782<br/>
+      <strong>Web:</strong> <a href="https://www.sanbi.org/gardens/kirstenbosch/">sanbi.org/kirstenbosch</a></p>
+    </div>
+  </article>
+
+  <article class="spot">
+    <img class="cover" src="img/constantia.jpg" alt="Constantia vineyards under the mountains" />
+    <div class="body">
+      <div class="qrwrap"><a href="https://constantiawineroute.com" target="_blank" rel="noopener"><img class="qr" src="qr/constantia.png" alt="QR Constantia Wine Route"></a><a class="tiny" href="https://constantiawineroute.com" target="_blank" rel="noopener">Open wine route</a></div>
+      <h3>Constantia Wine Route</h3>
+      <p class="meta">± 10–20 min drive · oldest wine region in South Africa</p>
+      <p>Cool-climate Sauvignon Blanc country in a green valley behind the mountain. Don’t miss Groot Constantia (museum + tastings), Klein Constantia (Vin de Constance) and a long lunch at Steenberg or Buitenverwachting. Book tastings on weekends. Nominate a driver.</p>
+      <p><strong>Web:</strong> <a href="https://constantiawineroute.com">constantiawineroute.com</a><br/>
+      Groot Constantia 021 794 5128 · Klein Constantia 021 794 5188</p>
+    </div>
+  </article>
+</section>
+
+<section id="contact">
+  <h2>Hosts &amp; emergencies</h2>
+  <div class="grid">
+    <div>
+      <p><strong>Hosts:</strong> Maricken Vorster &amp; Nic Vorster</p>
+      <p><strong>Phone:</strong> 072 220 3385 · 082 929 7582<br/>
+      <strong>Email:</strong> Marickenmignon@gmail.com</p>
+      <p>For anything during your stay, Airbnb messages usually reach us fastest.</p>
+      <div class="tap-row no-print">
+        <a class="tap sea" href="tel:+27722203385">Call Maricken</a>
+        <a class="tap sea" href="tel:+27829297582">Call Nic</a>
+        <a class="tap gold" href="mailto:Marickenmignon@gmail.com">Email</a>
+      </div>
+    </div>
+    <div>
+      <p><strong>Police / security emergency:</strong> <a href="tel:10111">10111</a><br/>
+      <strong>Ambulance:</strong> <a href="tel:10177">10177</a><br/>
+      <strong>ER24:</strong> <a href="tel:084124">084 124</a></p>
+      <p>Tell us at once if you feel unwell, if something breaks, or if you cannot get into the house.</p>
+    </div>
+  </div>
+  <p>Thank you for looking after 8 Compass Close. We hope you sleep well to waterbirds, wake to the mountain, and come back.</p>
+</section>
+</main>
+<footer>Updated September 2026 · 8 Compass Close · East Lake Island · Marina da Gama · 7945</footer>
+
+<div class="lb" id="lb" onclick="if(event.target===this)closeLb()">
+  <button class="x" type="button" onclick="closeLb()">×</button>
+  <button class="navbtn prev" type="button" onclick="step(-1)">‹</button>
+  <img id="lbimg" alt="">
+  <button class="navbtn next" type="button" onclick="step(1)">›</button>
+  <div class="cap" id="lbcap"></div>
+</div>
+<script>
+const figs = [...document.querySelectorAll('#gallery figure')];
+let idx = 0;
+document.getElementById('filters').addEventListener('click', e => {
+  const b = e.target.closest('button'); if(!b) return;
+  document.querySelectorAll('#filters button').forEach(x => x.classList.toggle('on', x===b));
+  const f = b.dataset.f;
+  figs.forEach(fig => fig.style.display = (f==='all' || fig.dataset.f===f) ? '' : 'none');
+});
+figs.forEach((fig,i) => fig.addEventListener('click', () => openLb(i)));
+function visible(){ return figs.filter(f => f.style.display !== 'none'); }
+function openLb(i){ idx=i; const fig=figs[i]; document.getElementById('lbimg').src=fig.querySelector('img').src;
+  document.getElementById('lbcap').textContent=fig.dataset.cap||''; document.getElementById('lb').classList.add('show'); }
+function closeLb(){ document.getElementById('lb').classList.remove('show'); }
+function step(d){ const v=visible(); let pos=v.indexOf(figs[idx]); pos=(pos+d+v.length)%v.length; openLb(figs.indexOf(v[pos])); }
+document.addEventListener('keydown', e => {
+  if(!document.getElementById('lb').classList.contains('show')) return;
+  if(e.key==='Escape') closeLb();
+  if(e.key==='ArrowRight') step(1);
+  if(e.key==='ArrowLeft') step(-1);
+});
+function copyWifi(both){
+  const t = both ? 'Network: 8OnCompass\nPassword: 8ightOnCompass' : '8ightOnCompass';
+  navigator.clipboard.writeText(t).then(()=>{
+    document.getElementById('copied').textContent = both ? 'Network + password copied' : 'Password copied';
+    setTimeout(()=>document.getElementById('copied').textContent='',2200);
+  });
+}
+
+document.getElementById('install').style.display='flex';
+document.getElementById('installBtn').onclick = () => document.getElementById('hsTip').classList.add('show');
+
+const I18N = {
+en: {
+ brand:"Airbnb guest guide · East Lake Island",
+ sub:"Dinner faces the canal. The mountain does the rest.",
+ tonight:"Spring evenings: sliders shut if the south-easter is up. Fireplace if you want it.",
+ print:"Print / Save PDF", todo:"Things to do",
+ offline:"Open this page once on Wi‑Fi (airport or the house). It stays on your phone even if signal drops — then add it to your Home Screen.",
+ homescreen:"How to add to Home Screen",
+ nhelp:"Help", nplan:"Today", neat:"Eat", nhouse:"House", nrules:"Rules", nexplore:"Do", ncontact:"Contact",
+ help_h:"If something goes wrong", help_p:"Read this first. Then message us on Airbnb if it is not an emergency.",
+ h1t:"Cannot open the door", h1b:"Use the smart-lock code in your Airbnb message. Do not share it. If it fails: try again slowly, then call us. Do not force the handle.",
+ h2t:"No hot water", h2b:"The geyser can take 30–40 minutes after heavy use. If it stays cold after an hour, message us — do not open the geyser cupboard.",
+ h3t:"Wi‑Fi dead", h3b:"Reboot the router (unplug 20 seconds). Network 8OnCompass / 8ightOnCompass. Still down? Use phone data and tell us.",
+ h4t:"Gate or boom will not open", h4b:"Stop at the East Lake Island vehicle gate. Tell security you are Airbnb guests at 8 Compass Close. Keep the booking on your phone.",
+ h5t:"Child / water emergency", h5b:"Get them out. Call 10177 or ER24 084 124. Then call us. The pool is unfenced on a canal deck.",
+ h6t:"Power trip / something broken", h6b:"Leave electrics alone. Photograph the issue and message Airbnb. Fire or crime: 10111.",
+ w_h:"Weather & wind", w_p:"False Bay is often cooler than the city, and the summer south-easter can hammer the deck. Check wind before you take any craft out. Winter evenings: fireplace on, sliders closed.",
+ p_h:"A simple day", p1:"Morning: Muizenberg Beach or a walk on Park Island / Zandvlei — 5–10 minutes.",
+ p2:"Afternoon: penguins at Boulders, or a tasting in Constantia. One outing, not both.",
+ p3:"Sunset: stay home. The dining table faces the water and the mountain.",
+ e_h:"Eat & shop nearby", e_p:"All within about 10 minutes by car unless marked. Tap for Maps.",
+ z_h:"Watch these in the house",
+ z1:"Unfenced pool on a wooden deck next to the canal. Children need eyes on them every second.",
+ z2:"Canal edge and jetty — no rail that stops a fall. Gates closed.",
+ z3:"Marble stairs can be slick with wet feet.",
+ z4:"Trampoline: own risk, no shoes.",
+ z5:"Braai / Big Green Egg and fireplace stay hot. Never leave a fire.",
+ z6:"No glass at the pool. No diving.",
+ vlei_h:"Look after the vlei", vlei_p:"This canal feeds Zandvlei. No bread for the birds. No soap, sand or coals in the water. Keep voices down at dawn — that is when the herons hunt.", geese:"If Egyptian geese start at 05:30, that is the neighbourhood alarm clock. Normal.", more:"See all photos", less:"Show fewer photos", hs_h:"Add to Home Screen",
+ hs_p:"iPhone: tap the Share square at the bottom of Safari, then “Add to Home Screen”. Android: tap the three dots in Chrome, then “Add to Home screen”."
+},
+de: {
+ brand:"Airbnb-Gästeführer · East Lake Island",
+ sub:"Das Abendessen schaut auf den Kanal. Der Berg macht den Rest.",
+ tonight:"Frühlingsabende: Schiebetüren zu, wenn der Südostwind kommt. Kamin nach Wunsch.",
+ print:"Drucken / als PDF", todo:"Unternehmungen",
+ offline:"Öffnen Sie diese Seite einmal im WLAN. Danach bleibt sie auf dem Telefon — legen Sie sie auf den Home-Bildschirm.",
+ homescreen:"Auf den Home-Bildschirm",
+ nhelp:"Hilfe", nplan:"Heute", neat:"Essen", nhouse:"Haus", nrules:"Regeln", nexplore:"Tipps", ncontact:"Kontakt",
+ help_h:"Wenn etwas schiefgeht", help_p:"Zuerst hier lesen. Dann Airbnb-Nachricht, wenn es kein Notfall ist.",
+ h1t:"Tür geht nicht auf", h1b:"Code steht in der Airbnb-Nachricht. Nicht weitergeben. Langsam erneut versuchen, dann anrufen. Nicht gewaltsam öffnen.",
+ h2t:"Kein Warmwasser", h2b:"Der Boiler braucht nach viel Nutzung 30–40 Minuten. Nach einer Stunde uns schreiben. Schrank nicht öffnen.",
+ h3t:"Kein WLAN", h3b:"Router 20 Sekunden ziehen. Netz 8OnCompass / 8ightOnCompass. Sonst Mobilfunk nutzen und uns sagen.",
+ h4t:"Tor geht nicht auf", h4b:"Am Fahrzeugtor von East Lake Island halten. Security sagen: Airbnb-Gäste, 8 Compass Close.",
+ h5t:"Kind / Wasser-Notfall", h5b:"Rausholen. 10177 oder ER24 084 124. Dann uns anrufen. Der Pool ist ungesichert am Kanal.",
+ h6t:"Strom / Defekt", h6b:"Nichts Elektrisches anfassen. Foto machen, Airbnb schreiben. Feuer/Kriminalität: 10111.",
+ w_h:"Wetter & Wind", w_p:"False Bay ist oft kühler als die Stadt. Der Sommer-Südostwind trifft die Terrasse. Wind prüfen, bevor ein Boot rausgeht.",
+ p_h:"Ein einfacher Tag", p1:"Vormittag: Strand Muizenberg oder Spaziergang Park Island / Zandvlei.",
+ p2:"Nachmittag: Pinguine in Boulders oder Wein in Constantia — eines von beiden.",
+ p3:"Sonnenuntergang: zu Hause bleiben. Der Esstisch schaut aufs Wasser.",
+ e_h:"Essen & Einkaufen", e_p:"Meist 10 Minuten mit dem Auto. Tippen öffnet Karten.",
+ z_h:"Achtung im Haus",
+ z1:"Pool ohne Zaun auf dem Holzdeck am Kanal. Kinder immer beaufsichtigen.",
+ z2:"Kanalkante ohne Sturzsicherung. Tore zu.",
+ z3:"Marmortreppe wird mit nassen Füßen rutschig.",
+ z4:"Trampolin auf eigene Gefahr, keine Schuhe.",
+ z5:"Braai und Kamin bleiben heiß. Feuer nie allein lassen.",
+ z6:"Kein Glas am Pool. Nicht springen.",
+ vlei_h:"Den Vlei schützen", vlei_p:"Der Kanal speist Zandvlei. Kein Brot für Vögel. Keine Seife, kein Sand, keine Kohle ins Wasser. Morgens leise — dann jagen die Reiher.", geese:"Ägyptische Gänse um 05:30 sind normal — der Wecker der Marina.", more:"Alle Fotos", less:"Weniger Fotos", hs_h:"Auf den Home-Bildschirm",
+ hs_p:"iPhone: Teilen-Taste in Safari, dann „Zum Home-Bildschirm“. Android: Menüpunkte in Chrome, dann „Zum Startbildschirm“."
+},
+fr: {
+ brand:"Guide Airbnb · East Lake Island",
+ sub:"Le dîner donne sur le canal. La montagne fait le reste.",
+ tonight:"Soirées de printemps : fermez les baies si le sud-est souffle. Cheminée si vous voulez.",
+ print:"Imprimer / PDF", todo:"À faire",
+ offline:"Ouvrez cette page une fois en Wi‑Fi. Elle reste sur le téléphone. Ajoutez-la à l’écran d’accueil.",
+ homescreen:"Ajouter à l’accueil",
+ nhelp:"Aide", nplan:"Jour", neat:"Manger", nhouse:"Maison", nrules:"Règles", nexplore:"Sortir", ncontact:"Contact",
+ help_h:"En cas de problème", help_p:"Lisez ceci d’abord. Puis message Airbnb si ce n’est pas une urgence.",
+ h1t:"La porte ne s’ouvre pas", h1b:"Le code est dans le message Airbnb. Ne le partagez pas. Réessayez lentement, puis appelez. Ne forcez pas.",
+ h2t:"Pas d’eau chaude", h2b:"Le chauffe-eau peut mettre 30–40 min. Après une heure, écrivez-nous. N’ouvrez pas le coffret.",
+ h3t:"Pas de Wi‑Fi", h3b:"Redémarrez le routeur (20 secondes). Réseau 8OnCompass / 8ightOnCompass. Sinon, données mobiles.",
+ h4t:"La barrière ne s’ouvre pas", h4b:"Arrêtez-vous au portail d’East Lake Island. Dites : hôtes Airbnb, 8 Compass Close.",
+ h5t:"Enfant / eau", h5b:"Sortez-les. 10177 ou ER24 084 124. Puis nous appeler. La piscine n’est pas clôturée.",
+ h6t:"Électricité / casse", h6b:"Ne touchez pas l’électrique. Photo + message Airbnb. Feu ou vol : 10111.",
+ w_h:"Météo & vent", w_p:"False Bay est souvent plus frais que la ville. Le vent d’été tape la terrasse. Vérifiez le vent avant toute embarcation.",
+ p_h:"Une journée simple", p1:"Matin : plage de Muizenberg ou marche à Park Island / Zandvlei.",
+ p2:"Après-midi : manchots à Boulders ou dégustation à Constantia — pas les deux.",
+ p3:"Coucher de soleil : restez ici. La table donne sur l’eau.",
+ e_h:"Manger & courses", e_p:"Environ 10 minutes en voiture. Appuyez pour la carte.",
+ z_h:"Points de vigilance",
+ z1:"Piscine non clôturée sur le ponton du canal. Surveillez les enfants sans pause.",
+ z2:"Bord du canal sans barrière anti-chute. Portails fermés.",
+ z3:"Escalier en marbre glissant pieds mouillés.",
+ z4:"Trampoline à vos risques, sans chaussures.",
+ z5:"Braai et cheminée restent chauds. Ne laissez jamais un feu.",
+ z6:"Pas de verre à la piscine. Pas de plongeon.",
+ vlei_h:"Protéger le vlei", vlei_p:"Le canal alimente Zandvlei. Pas de pain pour les oiseaux. Pas de savon, sable ou braises dans l’eau. Parlez bas à l’aube — les hérons chassent.", geese:"Les ouettes d’Égypte à 05 h 30 sont normales. C’est le réveil du quartier.", more:"Toutes les photos", less:"Moins de photos", hs_h:"Écran d’accueil",
+ hs_p:"iPhone : bouton Partager dans Safari, puis « Sur l’écran d’accueil ». Android : menu Chrome, puis « Ajouter à l’écran d’accueil »."
+}
+};
+function applyLang(code){
+  const pack = I18N[code] || I18N.en;
+  document.querySelectorAll('[data-i]').forEach(el => {
+    const k = el.getAttribute('data-i');
+    if (pack[k]) el.innerHTML = pack[k];
+  });
+  document.querySelectorAll('.lang button').forEach(b => b.classList.toggle('on', b.dataset.lang===code));
+  localStorage.setItem('8c-lang', code);
+}
+document.querySelector('.lang').addEventListener('click', e => {
+  const b = e.target.closest('button'); if(b) applyLang(b.dataset.lang);
+});
+applyLang(localStorage.getItem('8c-lang') || 'en');
+
+
+const moreBtn = document.getElementById('morePhotos');
+if (moreBtn) {
+  let open = false;
+  moreBtn.onclick = () => {
+    open = !open;
+    document.querySelectorAll('#gallery figure.extra').forEach(f => f.hidden = !open);
+    const pack = (typeof I18N !== 'undefined' && I18N[localStorage.getItem('8c-lang')||'en']) || {};
+    moreBtn.textContent = open ? (pack.less || 'Show fewer photos') : (pack.more || 'See all photos');
+  };
+}
+
+const topbtn = document.getElementById('topbtn');
+window.addEventListener('scroll', () => {
+  topbtn.classList.toggle('show', window.scrollY > 420);
+}, {passive:true});
+</script>
+
+
+<div id="dock" class="no-print">
+  <a class="tap gold" href="https://maps.google.com/?q=8+Compass+Close,+Marina+da+Gama,+Cape+Town" target="_blank" rel="noopener">Maps</a>
+  <a class="tap light" href="tel:+27722203385">Call</a>
+  <a class="tap outline" href="#help">Help</a>
+</div>
+<button id="topbtn" type="button" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+<div id="hsTip" class="lb" onclick="this.classList.remove('show')">
+  <div style="background:#fff;color:#1c2a2e;border-radius:16px;padding:1.2rem;max-width:22rem;font-family:system-ui,sans-serif;">
+    <strong data-i="hs_h">Add to Home Screen</strong>
+    <p data-i="hs_p" style="margin:.6rem 0 0;">iPhone: tap the Share square at the bottom of Safari, then “Add to Home Screen”.<br><br>Android: tap the three dots in Chrome, then “Add to Home screen” or “Install app”.</p>
+  </div>
+</div>
+</body>
+</html>
